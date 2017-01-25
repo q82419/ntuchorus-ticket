@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <title>台大合唱團公演票圖--統計報表</title>
+        <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+        <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+        <script type="text/javascript" src="js/connect.js"></script>
+        <script type="text/javascript" src="js/fblogin.js"></script>
+        <script type="text/javascript" src="js/statistics.js"></script>
+        <link href="css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="css/typeset.css" rel="stylesheet" type="text/css" />
+        <link href="css/statistics.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <!-- Top Menu -->
+        <div id="menu">
+            <div id="menuinner">
+                <ul>
+                    <li><a class="menubutton" id="menubutton_1" href="index.html">首頁</a></li>
+                    <li><a class="menubutton" id="menubutton_2" href="ticketoutline.html">電子票圖</a></li>
+                    <li><a class="menubutton" id="menubutton_3" href="ticketsetting.html">整票系統</a></li>
+                    <li><a class="menubutton" id="menubutton_4" href="ticketdraw.html">劃票系統</a></li>
+                    <li><a class="menubutton" id="menubutton_5" href="ticketsale.html">售票登記</a></li>
+                    <li><a class="menubutton" id="menubutton_6" href="ticketedit.html">訂單編輯</a></li>
+                    <li><a class="menubutton" id="menubutton_7" href="ticketmap.html">售票地圖</a></li>
+                    <li><a class="menubutton" id="menubutton_8_on" href="statistics.html">統計報表</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id='content'>
+            <div class='floor' id='requesting'>
+                正在讀取票圖資訊......
+            </div>
+            <div class='floor' id='floor_statistic_1'>
+                <div class='floor_label'>財務統計</div>
+            </div>
+            <div class='floor' id='floor_statistic_2'>
+                <div class='floor_label'>每日售票記錄</div>
+                <div class='container_floor2_sub'>
+                    <div class='floor_label_sub'>一般票單</div>
+                    <div class='list_head' id='container_floor2_label'>
+                        <div class='entry_2_date'>日期</div>
+                        <div class='entry_2_type_0'>400元</div>
+                        <div class='entry_2_type_1'>600元</div>
+                        <div class='entry_2_type_2'>800元</div>
+                        <div class='entry_2_type_3'>1200元</div>
+                        <div class='entry_2_discount'>折扣</div>
+                        <div class='entry_2_totalprice'>總價</div>
+                    </div>
+                    <div id='container_floor2_1_data'></div>
+                </div>
+                <div class='container_floor2_sub'>
+                    <div class='floor_label_sub'>大戶票單</div>
+                    <div class='list_head' id='container_floor2_label'>
+                        <div class='entry_2_date'>日期</div>
+                        <div class='entry_2_type_0'>400元</div>
+                        <div class='entry_2_type_1'>600元</div>
+                        <div class='entry_2_type_2'>800元</div>
+                        <div class='entry_2_type_3'>1200元</div>
+                        <div class='entry_2_discount'>折扣</div>
+                        <div class='entry_2_totalprice'>總價</div>
+                    </div>
+                    <div id='container_floor2_2_data'></div>
+                </div>
+            </div>
+            <div class='floor' id='floor_statistic_3'>
+                <div class='floor_label'>大戶付款記錄</div>
+            </div>
+            <div class='floor' id='floor_statistic_4'>
+                <div class='floor_label'>個人售票統計</div>
+                <div id='container_floor4_button'>
+                    <a id='button4_sort_total' href='#'>總額排序</a>
+                    <a id='button4_sort_department' href='#'>聲部排序</a>
+                </div>
+                <div class='list_head' id='container_floor4_label'>
+                    <div class='entry_4_num'>#</div>
+                    <div class='entry_4_buyer'>姓名</div>
+                    <div class='entry_4_department'>聲部</div>
+                    <div class='entry_4_type_0'>400元</div>
+                    <div class='entry_4_type_1'>600元</div>
+                    <div class='entry_4_type_2'>800元</div>
+                    <div class='entry_4_type_3'>1200元</div>
+                    <div class='entry_4_discount'>折扣</div>
+                    <div class='entry_4_totalprice'>總價</div>
+                    <div class='entry_4_oweprice'>欠款</div>
+                </div>
+                <div id='container_floor4_data'></div>
+            </div>
+            <div class='floor' id='floor_statistic_5'>
+                <div class='floor_label'>售票總表</div>
+                <div id='container_floor5_button'>
+                    <a id='button5_sort_id' href='#'>建檔排序</a>
+                    <a id='button5_sort_date' href='#'>日期排序</a>
+                </div>
+                <div class='list_head' id='container_floor5_label'>
+                    <div class='entry_5_num'>#</div>
+                    <div class='entry_5_buyer'>姓名</div>
+                    <div class='entry_5_department'>聲部</div>
+                    <div class='entry_5_date'>售票日期</div>
+                    <div class='entry_5_saler'>負責人</div>
+                    <div class='entry_5_type_0'>400元</div>
+                    <div class='entry_5_type_1'>600元</div>
+                    <div class='entry_5_type_2'>800元</div>
+                    <div class='entry_5_type_3'>1200元</div>
+                    <div class='entry_5_paymode'>模式</div>
+                    <div class='entry_5_discount'>折扣</div>
+                    <div class='entry_5_totalprice'>總價</div>
+                    <div class='entry_5_oweprice'>欠款</div>
+                </div>
+                <div id='container_floor5_data'></div>
+            </div>
+        </div>
+    </body>
+</html>
