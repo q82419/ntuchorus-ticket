@@ -1,10 +1,39 @@
+var data_floor1 = {};
 var data_floor2_1 = [];
 var data_floor2_2 = [];
 var data_floor4 = [];
 var data_floor5 = [];
 var salerTable = [];
 var departmentTable = ['Soprano', 'Alto', 'Tenor', 'Bass', '團外', '老師', '友團', '老人'];
+var preserveTable = ['團員票', '老師票', '友團票', '老人票', 'VIP票', '系統票', '總計'];
 var paymodeTable = ['付清', '賒帳'];
+var priceTable = [400, 700, 1000, 1500];
+
+function showFloor1Entry(num, entry){
+    var sale = entry['type0'] + entry['type1'] +  entry['type2'] + entry['type3'];
+    var total = entry['type0_total'] + entry['type1_total'] +  entry['type2_total'] + entry['type3_total'];
+    $('#container_floor1_data').append("<div class='list_entry container_floor1_data_entry'>" +
+                                           "<div class='entry_1_type'>" + preserveTable[num] + "</div>" +
+                                           "<div class='entry_1_type_0'>" + (entry['type0'] == 0 ? "" : entry['type0']) + "</div>" +
+                                           "<div class='entry_1_type_0'>" + (entry['type0_total'] == 0 ? "" : entry['type0_total']) + "</div>" +
+                                           "<div class='entry_1_type_0_rate'>" + (entry['type0_total'] == 0 ? "" : (entry['type0'] / entry['type0_total'] * 100).toFixed(1) + '%') + "</div>" +
+                                           "<div class='entry_1_type_0_price'>" + (entry['type0_price'] == 0 ? "" : entry['type0_price']) + "</div>" +
+                                           "<div class='entry_1_type_1'>" + (entry['type1'] == 0 ? "" : entry['type1']) + "</div>" +
+                                           "<div class='entry_1_type_1'>" + (entry['type1_total'] == 0 ? "" : entry['type1_total']) + "</div>" +
+                                           "<div class='entry_1_type_1_rate'>" + (entry['type1_total'] == 0 ? "" : (entry['type1'] / entry['type1_total'] * 100).toFixed(1) + '%') + "</div>" +
+                                           "<div class='entry_1_type_1_price'>" + (entry['type1_price'] == 0 ? "" : entry['type1_price']) + "</div>" +
+                                           "<div class='entry_1_type_2'>" + (entry['type2'] == 0 ? "" : entry['type2']) + "</div>" +
+                                           "<div class='entry_1_type_2'>" + (entry['type2_total'] == 0 ? "" : entry['type2_total']) + "</div>" +
+                                           "<div class='entry_1_type_2_rate'>" + (entry['type2_total'] == 0 ? "" : (entry['type2'] / entry['type2_total'] * 100).toFixed(1) + '%') + "</div>" +
+                                           "<div class='entry_1_type_2_price'>" + (entry['type2_price'] == 0 ? "" : entry['type2_price']) + "</div>" +
+                                           "<div class='entry_1_type_3'>" + (entry['type3'] == 0 ? "" : entry['type3']) + "</div>" +
+                                           "<div class='entry_1_type_3'>" + (entry['type3_total'] == 0 ? "" : entry['type3_total']) + "</div>" +
+                                           "<div class='entry_1_type_3_rate'>" + (entry['type3_total'] == 0 ? "" : (entry['type3'] / entry['type3_total'] * 100).toFixed(1) + '%') + "</div>" +
+                                           "<div class='entry_1_type_3_price'>" + (entry['type3_price'] == 0 ? "" : entry['type3_price']) + "</div>" +
+                                           "<div class='entry_1_totalrate'>" + (total == 0 ? "" : (sale / total * 100).toFixed(1) + '%') + "</div>" +
+                                           "<div class='entry_1_totalprice'>" + entry['totalprice'] + "</div>" +
+                                       "</div>");
+}
 
 function showFloor2Entry(i, entry){
     $('#container_floor2_' + i + '_data').append("<div class='list_entry container_floor2_data_entry'>" +
@@ -97,6 +126,37 @@ $(document).ready(function(){
                         if(data['queryManager'][i]['department'] < 5)
                             salerTable[data['queryManager'][i]['department']] = data['queryManager'][i]['name'];
                     }
+
+                    /* Floor 1 table */
+                    var data_floor1_total = {'type0': 0, 'type0_total': 0, 'type0_price': 0,  'type1': 0, 'type1_total': 0, 'type1_price': 0,  'type2': 0, 'type2_total': 0, 'type2_price': 0,  'type3': 0, 'type3_total': 0, 'type3_price': 0, 'totalprice': 0};
+                    for(var i = 0; i < 6; i++){
+                        if(i != 4){
+                            var insert = {'type0': 0, 'type0_total': 0, 'type0_price': 0,  'type1': 0, 'type1_total': 0, 'type1_price': 0,  'type2': 0, 'type2_total': 0, 'type2_price': 0,  'type3': 0, 'type3_total': 0, 'type3_price': 0, 'totalprice': 0};
+                            data_floor1[i] = insert;
+                        }
+                    }
+                    for(var i = 0; i < data['queryString_1'].length; i++){
+                        var insert = data['queryString_1'][i];
+                        if(insert['preserve'] != 4 && insert['preserve'] < 6){
+                            if(insert['state'] == 2){
+                                data_floor1[insert['preserve']]['type' + insert['type']] += insert['num'];
+                                data_floor1_total['type' + insert['type']] += insert['num'];
+                                var price = insert['num'] * priceTable[insert['type']];
+                                if(insert['preserve'] != 5 && insert['type'] != 3)
+                                    price *= 0.9;
+                                data_floor1[insert['preserve']]['type' + insert['type'] + '_price'] += price;
+                                data_floor1[insert['preserve']]['totalprice'] += price;
+                                data_floor1_total['type' + insert['type'] + '_price'] += price;
+                                data_floor1_total['totalprice'] += price;
+                            }
+                            data_floor1[insert['preserve']]['type' + insert['type'] + '_total'] += insert['num'];
+                            data_floor1_total['type' + insert['type'] + '_total'] += insert['num'];
+                        }
+                    }
+                    data_floor1[6] = data_floor1_total;
+                    Object.keys(data_floor1).forEach(function(key, idx) {
+                        showFloor1Entry(key, data_floor1[key]);
+                    });
 
                     /* Floor 2 table */
                     var data_floor2_total_1 = {'date': '總計', 'type0': 0, 'type1': 0, 'type2': 0, 'type3': 0, 'discount': 0, 'totalprice': 0};

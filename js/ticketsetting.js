@@ -2,9 +2,9 @@ var ticketTable = {};
 var editTicketTableType = {};
 var editTicketTablePreserve = {};
 var editSelector = 0;
-/* 10: 400  11: 600  12: 800  13: 1200 14: vip */
+/* 10: 400  11: 700  12: 1000  13: 1500 14: vip */
 /* 20: none 21: teacher 22: friend 23:old 24: vip 25: system */
-var vType = {0: 400, 1: 600, 2: 800, 3: 1200, 4: 0};
+var vType = {0: 400, 1: 700, 2: 1000, 3: 1500, 4: 0};
 
 function pickSelector(a) {
     var id = a.find('div[class^=graphicon_]').attr('class').split('_');

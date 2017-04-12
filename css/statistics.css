@@ -27,6 +27,29 @@
 .list_entry:hover { background: #e3e3e3; }
 
 
+/* Floor 1 */
+.entry_1_type, .entry_1_type_0, .entry_1_type_1, .entry_1_type_2, .entry_1_type_3,
+.entry_1_type_0_price, .entry_1_type_1_price, .entry_1_type_2_price, .entry_1_type_3_price, .entry_1_totalprice,
+.entry_1_type_0_rate, .entry_1_type_1_rate, .entry_1_type_2_rate, .entry_1_type_3_rate, .entry_1_totalrate {
+    float: left;
+    height: 25px;
+    line-height: 25px;
+}
+    /* Width */
+#container_floor1_label, .container_floor1_data_entry { width: 965px; }
+.entry_1_type { width: 70px; }
+.entry_1_type_0, .entry_1_type_1, .entry_1_type_2, .entry_1_type_3 { width: 40px; }
+.entry_1_type_0_price, .entry_1_type_1_price, .entry_1_type_2_price, .entry_1_type_3_price, .entry_1_totalprice {
+    text-align: right;
+    width: 65px;
+}
+.entry_1_type_0_rate, .entry_1_type_1_rate, .entry_1_type_2_rate, .entry_1_type_3_rate, .entry_1_totalrate {
+    text-align: right;
+    width: 50px;
+}
+.entry_1_totalprice { text-align: right; }
+
+
 /* Floor 2 */
 .entry_2_date, .entry_2_type_0, .entry_2_type_1, .entry_2_type_2, .entry_2_type_3,
 .entry_2_discount, .entry_2_totalprice {
@@ -100,10 +123,10 @@
 
 
 /* Color */
-.entry_2_type_0, .entry_4_type_0, .entry_5_type_0 { color: #42910D; }
-.entry_2_type_1, .entry_4_type_1, .entry_5_type_1 { color: #205EB3; }
-.entry_2_type_2, .entry_4_type_2, .entry_5_type_2 { color: #777A09; }
-.entry_2_type_3, .entry_4_type_3, .entry_5_type_3 { color: #A14A15; }
+.entry_1_type_0, .entry_1_type_0_rate, .entry_1_type_0_price, .entry_2_type_0, .entry_4_type_0, .entry_5_type_0 { color: #42910D; }
+.entry_1_type_1, .entry_1_type_1_rate, .entry_1_type_1_price, .entry_2_type_1, .entry_4_type_1, .entry_5_type_1 { color: #205EB3; }
+.entry_1_type_2, .entry_1_type_2_rate, .entry_1_type_2_price, .entry_2_type_2, .entry_4_type_2, .entry_5_type_2 { color: #777A09; }
+.entry_1_type_3, .entry_1_type_3_rate, .entry_1_type_3_price, .entry_2_type_3, .entry_4_type_3, .entry_5_type_3 { color: #A14A15; }
 .entry_4_oweprice, .entry_5_oweprice { color: #DE0404; }
 
 
